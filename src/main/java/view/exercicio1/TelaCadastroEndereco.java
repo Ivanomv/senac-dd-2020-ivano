@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaCadastroEndereco extends JFrame {
 
@@ -22,6 +24,8 @@ public class TelaCadastroEndereco extends JFrame {
 	private JTextField textCidade;
 	private JTextField textBairro;
 	private JTextField textNumero;
+	private JFormattedTextField txtCep;
+	private JComboBox cbSiglaEstado;
 
 	/**
 	 * Launch the application.
@@ -80,6 +84,11 @@ public class TelaCadastroEndereco extends JFrame {
 		contentPane.add(btnSalvar);
 		
 		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LimparCampos();
+			}
+		});
 		btnLimpar.setBounds(222, 114, 89, 23);
 		contentPane.add(btnLimpar);
 		
@@ -106,7 +115,7 @@ public class TelaCadastroEndereco extends JFrame {
 		try {
 			MaskFormatter mascaraCep = new MaskFormatter("#####-###");
 			
-			JFormattedTextField txtCep = new JFormattedTextField(mascaraCep);
+			txtCep = new JFormattedTextField(mascaraCep);
 			txtCep.setBounds(278, 40, 110, 20);
 			contentPane.add(txtCep);
 			
@@ -118,10 +127,20 @@ public class TelaCadastroEndereco extends JFrame {
 		
 		ArrayList<String> SiglasEstados =  ConsultarEstador();
 		
-		JComboBox cbSiglaEstado = new JComboBox(SiglasEstados.toArray());
+		cbSiglaEstado = new JComboBox(SiglasEstados.toArray());
 		cbSiglaEstado.setBounds(278, 76, 110, 22);
 		contentPane.add(cbSiglaEstado);
 	
+	}
+
+	protected void LimparCampos() {
+		this.textRua.setText("");
+		this.textBairro.setText("");
+		this.textCidade.setText("");
+		this.textNumero.setText("");
+		this.txtCep.setText("");
+		this.cbSiglaEstado.setSelectedIndex(-1);
+		
 	}
 
 	private ArrayList<String> ConsultarEstador() {
