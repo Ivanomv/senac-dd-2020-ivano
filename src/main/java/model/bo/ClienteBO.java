@@ -1,5 +1,7 @@
 package model.bo;
 
+import javax.swing.ComboBoxModel;
+
 import model.dao.exercicio1.ClienteDAO;
 import model.vo.exercicio1.Cliente;
 
@@ -28,5 +30,7 @@ public class ClienteBO {
 		
 		return mensagem;
 	}
+	
+	}
 
-}
+

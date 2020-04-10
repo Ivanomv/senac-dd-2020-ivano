@@ -57,5 +57,28 @@ public class TelefoneController {
 
 		return "";
 	}
+	
+	public String Cadastrar(String numero,String ddd,String codigoPais) {
+		String mensagem = "";
+		if(numero == null) {
+			mensagem = "Telefone n�o pode ser criado";
+		} else {
+			if (codigoPais.trim().length() != 2) {
+				mensagem += "Informe o DDD com 2 dígitos \n";
+			}
 
-}
+			try {
+				Integer.parseInt(ddd);
+			} catch (NumberFormatException ex) {
+				mensagem += "O DDD deve ser um NÚMERO";
+			}
+		}
+
+		
+		return mensagem;
+	}
+		
+	}
+	
+
+

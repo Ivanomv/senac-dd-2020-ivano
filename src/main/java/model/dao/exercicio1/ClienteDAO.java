@@ -199,4 +199,54 @@ public class ClienteDAO {
 
 		return enderecoJaUsado;
 	}
+
+
+
+public boolean excluirCLiente(int idcliente) {
+	Connection conn = Banco.getConnection();
+	String sql = "DELETE FROM CLIENTE WHERE ID= " + idcliente;
+	Statement stmt = Banco.getStatement(conn);
+
+	int quantidadeLinhasAfetadas = 0;
+	try {
+		quantidadeLinhasAfetadas = stmt.executeUpdate(sql);
+	} catch (SQLException e) {
+		System.out.println("Erro ao excluir cliente.");
+		System.out.println("Erro: " + e.getMessage());
+	}
+
+	boolean excluiu = quantidadeLinhasAfetadas > 0;
+
+	if (excluiu) {
+		TelefoneDAO telefoneDAO = new TelefoneDAO();
+		telefoneDAO.desativarTelefones(idcliente);
+	}
+
+	return excluiu;
 }
+
+public static Cliente consultarPorCpf(String cpfcliente) {
+	
+	
+	Connection conn = Banco.getConnection();
+	String sql = "DELETE FROM CLIENTE WHERE ID= " + cpfcliente;
+	Statement stmt = Banco.getStatement(conn);
+
+	int quantidadeLinhasAfetadas = 0;
+	try {
+		quantidadeLinhasAfetadas = stmt.executeUpdate(sql);
+	} catch (SQLException e) {
+		System.out.println("Erro ao excluir cliente.");
+		System.out.println("Erro: " + e.getMessage());
+	}
+
+	boolean excluiu = quantidadeLinhasAfetadas > 0;
+
+	return null;
+}
+
+}
+
+
+
+

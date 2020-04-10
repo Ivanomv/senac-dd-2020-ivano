@@ -23,6 +23,10 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
+	public Cliente(String nome2, String sobrenome2, String cpf2, String endereco2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNomeCompleto() {
 		return this.nome + " " + this.sobrenome;
 	}
